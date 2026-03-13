@@ -10,7 +10,7 @@
 
         Version: 1.0
     - All Features from Original Roblox CompKiller (https://github.com/4lpaca-pin/CompKiller)
-	- More lucidev icons compability
+	- More lucide.dev icons compability
 --]]
 
 -- ATTEMPT 3
