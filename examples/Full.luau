@@ -103,7 +103,7 @@ local Watermark = Window:Watermark();
 
 Watermark:AddText({
 	Icon = "user",
-	Text = "4lpaca",
+	Text = game.Players.LocalPlayer.Name,
 });
 
 Watermark:AddText({
