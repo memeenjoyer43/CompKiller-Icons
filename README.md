@@ -15,14 +15,14 @@ CompKiller UI For Roblox (https://compkiller.net)
 
 # Usage
 - [**[Documentation]**](https://cat-sus.gitbook.io/compkiller/documents/interface)
-- [**[Example]**](https://github.com/4lpaca-pin/CompKiller/blob/main/examples/Full.luau)
-- [**[Source Code]**](https://github.com/4lpaca-pin/CompKiller/blob/main/src/source.luau)
+- [**[Example]**](https://github.com/memeenjoyer43/CompKiller-Icons/blob/main/examples/Full.luau)
+- [**[Source Code]**](https://github.com/memeenjoyer43/CompKiller-Icons/blob/main/src/source.luau)
 
 # Other Functions
 
 ### Icons
 ```lua
-Compkiller:_GetIcon(<name : String>) -> Rbx AssetId : String
+Compkiller:_GetIcon(<name : String>) -> Table {ImageRectSize, ImageRectOffset, Image} | String(rbxassetid://...)
 ```
 Icon from fontawesome
 ```lua
