@@ -1,6 +1,7 @@
 # CompKiller
 
-> This is a modified version of CompKiller to be able to preserve more lucide.dev icons, original version of CompKiller are [here](https://github.com/4lpaca-pin/CompKiller)
+> This is a modified version of CompKiller to be able to preserve more lucide.dev icons, original version of CompKiller are [here](https://github.com/4lpaca-pin/CompKiller)\
+> forked by memeenjoyer43
 
 CompKiller UI For Roblox (https://compkiller.net)
 
