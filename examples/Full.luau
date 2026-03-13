@@ -6,8 +6,7 @@
 	Press Left Alt to open / close
 ]]
 
-local Compkiller = loadstring(game:HttpGet("https://raw.githubusercontent.com/4lpaca-pin/CompKiller/refs/heads/main/src/source.luau"))();
-
+local Compkiller = loadstring(game:HttpGet("https://raw.githubusercontent.com/memeenjoyer43/CompKiller-Icons/refs/heads/main/src/source.luau"))();
 
 -- Create Notification --
 local Notifier = Compkiller.newNotify();
@@ -27,7 +26,7 @@ local MenuKey = "LeftAlt";
 local Window = Compkiller.new({
 	Name = "COMPKILLER",
 	Keybind = MenuKey,
-	Logo = "rbxassetid://120245531583106",
+	Logo = "rbxassetid://1288750193000531",
 	Scale = Compkiller.Scale.Window, -- Leave blank if you want automatic scale [PC, Mobile].
 	TextSize = 15,
 });
@@ -117,12 +116,6 @@ local Time = Watermark:AddText({
 	Text = "TIME",
 });
 
-task.spawn(function()
-	while true do task.wait()
-		Time:SetText(Compkiller:GetTimeNow());
-	end
-end)
-
 Watermark:AddText({
 	Icon = "server",
 	Text = Compkiller.Version,
@@ -136,10 +129,9 @@ Window:DrawCategory({
 -- Creating Tab --
 local NormalTab = Window:DrawTab({
 	Name = "Example Tab",
-	Icon = "apple",
+	Icon = "terminal-square",
 	EnableScrolling = true
 });
-
 -- Creating Section --
 local NormalSection = NormalTab:DrawSection({
 	Name = "Section",
@@ -157,7 +149,9 @@ local Toggle = NormalSection:AddToggle({
 local Keybind = Toggle.Link:AddKeybind({
 	Default = "E",
 	Flag = "Option_Keybind",
-	Callback = print
+	Callback = function(val)
+		print(val)
+	end
 });
 
 -- Helper --
@@ -204,7 +198,9 @@ NormalSection:AddKeybind({
 	Name = "Keybind",
 	Default = "LeftAlt",
 	Flag = "Keybind_Example",
-	Callback = print,
+	Callback = function(val)
+		print(val)
+	end,
 });
 
 NormalSection:AddSlider({
