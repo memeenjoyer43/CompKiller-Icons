@@ -2,15 +2,15 @@
     		Compkiller Interface
 
     Author: 4lpaca
-    License: MIT
-    Github: https://github.com/4lpaca-pin/CompKiller
-    Original: compkiller.net
+	Modified by memeenjoyer43
 
-        Version: 2.6
-    - Improved Performance Mode
-    	Compkiller:OptimizeMode(< boolean >)
-  	- Added Auto Color Logo
-		Compkiller:CustomIconHighlight()
+    License: MIT
+    Original UI: compkiller.net
+    Original Github: https://github.com/4lpaca-pin/CompKiller
+
+        Version: 1.0
+    - All Features from Original Roblox CompKiller (https://github.com/4lpaca-pin/CompKiller)
+	- More lucidev icons compability
 --]]
 
 -- ATTEMPT 3
