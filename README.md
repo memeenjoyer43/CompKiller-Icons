@@ -22,7 +22,7 @@ CompKiller UI For Roblox (https://compkiller.net)
 
 ### Icons
 ```lua
-Compkiller:_GetIcon(<name : String>) -> Table {ImageRectSize, ImageRectOffset, Image} | String(rbxassetid://...)
+Compkiller:_GetIcon(<name : String>) -> Table {ImageRectSize : Vector2, ImageRectOffset : Vector2, Image : String} | String(rbxassetid://...) | nil
 ```
 Icon from fontawesome
 ```lua
