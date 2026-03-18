@@ -53,10 +53,8 @@ return {
 			Image.ImageRectSize = IconData.ImageRectSize
 			Image.ImageRectOffset = IconData.ImageRectOffset
 			Image.Image = IconData.Image
-			print(IconName .. " Passed table")
 		elseif not IconData or string.find(IconName, "rbxassetid://") then
 			Image.Image = IconName
-			print(IconName .. " Passed string")
 		elseif typeof(IconData) == 'string' then
 			Image.Image = IconData
 		end

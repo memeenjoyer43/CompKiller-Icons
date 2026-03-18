@@ -3165,28 +3165,24 @@ function Compkiller:_LoadOption(Value , TabSignal)
 			Compkiller.Flags[Config.Flag] = Args;
 		end;
 
-		if Config.InputBeganCallback then
-			UserInputService.InputBegan:Connect(function(Input, GameProccessed)
-				if GameProccessed then
-					return
-				end
+		UserInputService.InputBegan:Connect(function(Input, GameProccessed)
+			if GameProccessed then
+				return
+			end
 
-				if Input.KeyCode.Name == Args:GetValue() or Input.UserInputType.Name == Args:GetValue() then
-					Config.InputBeganCallback((Input.KeyCode and Input.KeyCode.Name ~= "Unknown" and Input.KeyCode.Name) or (Input.UserInputType and Input.UserInputType.Name));
-				end;
-			end);
-		end
-		if Config.InputEndedCallback then
-			UserInputService.InputEnded:Connect(function(Input, GameProccessed)
-				if GameProccessed then
-					return
-				end
+			if Input.KeyCode.Name == Args:GetValue() or Input.UserInputType.Name == Args:GetValue() then
+				Config.InputBeganCallback((Input.KeyCode and Input.KeyCode.Name ~= "Unknown" and Input.KeyCode.Name) or (Input.UserInputType and Input.UserInputType.Name));
+			end;
+		end);
+		UserInputService.InputEnded:Connect(function(Input, GameProccessed)
+			if GameProccessed then
+				return
+			end
 
-				if Input.KeyCode.Name == Args:GetValue() or Input.UserInputType.Name == Args:GetValue() then
-					Config.InputEndedCallback((Input.KeyCode and Input.KeyCode.Name ~= "Unknown" and Input.KeyCode.Name) or (Input.UserInputType and Input.UserInputType.Name));
-				end;
-			end);
-		end
+			if Input.KeyCode.Name == Args:GetValue() or Input.UserInputType.Name == Args:GetValue() then
+				Config.InputEndedCallback((Input.KeyCode and Input.KeyCode.Name ~= "Unknown" and Input.KeyCode.Name) or (Input.UserInputType and Input.UserInputType.Name));
+			end;
+		end);
 
 		return Args;
 	end;
@@ -4050,28 +4046,24 @@ function Compkiller:_LoadElement(Parent: Frame , EnabledLine: boolean , Signal ,
 			Compkiller.Flags[Config.Flag] = Args;
 		end;
 
-		if Config.InputBeganCallback then
-			UserInputService.InputBegan:Connect(function(Input, GameProccessed)
-				if GameProccessed then
-					return
-				end
+		UserInputService.InputBegan:Connect(function(Input, GameProccessed)
+			if GameProccessed then
+				return
+			end
 
-				if Input.KeyCode.Name == Args:GetValue() or Input.UserInputType.Name == Args:GetValue() then
-					Config.InputBeganCallback((Input.KeyCode and Input.KeyCode.Name ~= "Unknown" and Input.KeyCode.Name) or (Input.UserInputType and Input.UserInputType.Name));
-				end;
-			end);
-		end
-		if Config.InputEndedCallback then
-			UserInputService.InputEnded:Connect(function(Input, GameProccessed)
-				if GameProccessed then
-					return
-				end
+			if Input.KeyCode.Name == Args:GetValue() or Input.UserInputType.Name == Args:GetValue() then
+				Config.InputBeganCallback((Input.KeyCode and Input.KeyCode.Name ~= "Unknown" and Input.KeyCode.Name) or (Input.UserInputType and Input.UserInputType.Name));
+			end;
+		end);
+		UserInputService.InputEnded:Connect(function(Input, GameProccessed)
+			if GameProccessed then
+				return
+			end
 
-				if Input.KeyCode.Name == Args:GetValue() or Input.UserInputType.Name == Args:GetValue() then
-					Config.InputEndedCallback((Input.KeyCode and Input.KeyCode.Name ~= "Unknown" and Input.KeyCode.Name) or (Input.UserInputType and Input.UserInputType.Name));
-				end;
-			end);
-		end
+			if Input.KeyCode.Name == Args:GetValue() or Input.UserInputType.Name == Args:GetValue() then
+				Config.InputEndedCallback((Input.KeyCode and Input.KeyCode.Name ~= "Unknown" and Input.KeyCode.Name) or (Input.UserInputType and Input.UserInputType.Name));
+			end;
+		end);
 
 		return Args;
 	end;
