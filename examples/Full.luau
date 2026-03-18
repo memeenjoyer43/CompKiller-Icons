@@ -154,8 +154,9 @@ Toggle.Link:AddKeybind({
 	Default = "E",
 	Flag = "Option_Keybind",
 	OnChangedCallback = print,
-	InputBeganCallback = print,
-	InputEndedCallback = print
+	InputBeganCallback = function(val)
+		print("keybind from linked : " .. val)
+	end,
 });
 
 -- Helper --
@@ -204,11 +205,8 @@ NormalSection:AddKeybind({
 	Flag = "Keybind_Example",
 	OnChangedCallback = print,
 	InputBeganCallback = function(val)
-		print("Input Began : " .. val)
-	end,	
-	InputEndedCallback = function(val)
-		print("Input Ended : " .. val)
-	end,	
+		print("keybind from normal : " .. val)
+	end,
 });
 
 NormalSection:AddSlider({
@@ -277,12 +275,6 @@ local DrawElements = function(Tab,Position)
 			Callback = print,
 		});
 
-		-- Add Keybind To Toggle --
-		local Keybind = Toggle.Link:AddKeybind({
-			Default = "E",
-			OnChangedCallback = print
-		});
-
 		-- Add Option To Toggle --
 		local Toggle2 = NormalSectionRight:AddToggle({
 			Name = "Toggle",
@@ -295,14 +287,6 @@ local DrawElements = function(Tab,Position)
 		Option:AddToggle({
 			Name= "Example",
 			Callback = print
-		});
-
-		NormalSectionRight:AddKeybind({
-			Name = "Keybind",
-			Default = "LeftAlt",
-			OnChangedCallback = print,
-			InputBeganCallback = print,
-			InputEndedCallback = print
 		});
 
 		NormalSectionRight:AddSlider({
