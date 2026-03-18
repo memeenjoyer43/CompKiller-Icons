@@ -6,11 +6,10 @@
 
     License: MIT
     Original UI: compkiller.net
-    Original Github: https://github.com/4lpaca-pin/CompKiller
+    Original Github Reposity: https://github.com/4lpaca-pin/CompKiller
 
-        Version: 1.0
-    - All Features from Original Roblox CompKiller (https://github.com/4lpaca-pin/CompKiller)
-	- More lucide.dev icons compability
+        Version: 1.5
+    - Modified AddKeybind Callback execution method from Callback to InputEndedCallback, InputBeganCallback, OnChangedCallback
 --]]
 
 -- ATTEMPT 3
@@ -2927,7 +2926,13 @@ function Compkiller:_KeybindHandler(Parent: Frame , ObjectType: string , Element
 	Flag.Key = ElementAPIs:AddKeybind({
 		Name = "Key",
 		Default = APIRef.Keybind,
-		Callback = function(v)
+		OnChangedCallback = function(v)
+			APIRef.Keybind = v;
+		end,
+		InputBeginCallback = function(v)
+			APIRef.Keybind = v;
+		end,
+		InputEndedCallback = function(v)
 			APIRef.Keybind = v;
 		end,
 	});
@@ -3090,10 +3095,11 @@ function Compkiller:_LoadOption(Value , TabSignal)
 
 	function Args:AddKeybind(Config: MiniKeybind)
 		Config = Compkiller.__CONFIG(Config,{
-			Name = "Keybind",
 			Default = nil,
 			Flag = nil,
-			Callback = function() end;
+			OnChangedCallback = function() end;
+			InputBeganCallback = function() end;
+			InputEndedCallback = function() end;
 			Blacklist = {}
 		});
 
@@ -3121,14 +3127,14 @@ function Compkiller:_LoadOption(Value , TabSignal)
 					Selected = Key.KeyCode;
 				else
 					if Key.UserInputType == Enum.UserInputType.MouseButton1 and not IsBlacklist(Enum.UserInputType.MouseButton1) and not IsBlacklist("MouseLeft") then
-						Selected = "MouseLeft";
+						Selected = Key.UserInputType;
 					elseif Key.UserInputType == Enum.UserInputType.MouseButton2 and not IsBlacklist(Enum.UserInputType.MouseButton2) and not IsBlacklist("MouseRight") then
-						Selected = "MouseRight";
+						Selected = Key.UserInputType;
 					end;
 				end;
 			end;
 
-			local KeyName = (typeof(Selected) == "string" and Selected) or Selected.Name;
+			local KeyName = Selected.Name;
 
 			Config.Default = KeyName;
 
@@ -3136,7 +3142,7 @@ function Compkiller:_LoadOption(Value , TabSignal)
 
 			IsBinding = false;
 
-			Config.Callback(KeyName);
+			Config.OnChangedCallback(KeyName);
 		end);
 
 		local Args = {};
@@ -3148,16 +3154,39 @@ function Compkiller:_LoadOption(Value , TabSignal)
 
 			Keybind.SetValue(Config.Default);
 
-			Config.Callback(Config.Default);
+			Config.OnChangedCallback(Config.Default);
 		end;
 
 		function Args:GetValue()
-			return (typeof(Config.Default) == "string" and Config.Default) or Config.Default.Name;
+			return Config.Default;
 		end;
 
 		if Config.Flag then
 			Compkiller.Flags[Config.Flag] = Args;
 		end;
+
+		if InputBeganCallback then
+			UserInputService.InputBegan:Connect(function(Input, GameProccessed)
+				if GameProccessed then
+					return
+				end
+
+				if Input.KeyCode.Name == Args:GetValue() or Input.UserInputType.Name == Args:GetValue() then
+					Config.InputBeganCallback((Input.KeyCode and Input.KeyCode.Name ~= "Unknown" and Input.KeyCode.Name) or (Input.UserInputType and Input.UserInputType.Name));
+				end;
+			end);
+		end
+		if InputEndedCallback then
+			UserInputService.InputEnded:Connect(function(Input, GameProccessed)
+				if GameProccessed then
+					return
+				end
+
+				if Input.KeyCode.Name == Args:GetValue() or Input.UserInputType.Name == Args:GetValue() then
+					Config.InputEndedCallback((Input.KeyCode and Input.KeyCode.Name ~= "Unknown" and Input.KeyCode.Name) or (Input.UserInputType and Input.UserInputType.Name));
+				end;
+			end);
+		end
 
 		return Args;
 	end;
@@ -3929,7 +3958,9 @@ function Compkiller:_LoadElement(Parent: Frame , EnabledLine: boolean , Signal ,
 			Name = "Keybind",
 			Default = nil,
 			Flag = nil,
-			Callback = function() end;
+			OnChangedCallback = function() end;
+			InputBeganCallback = function() end;
+			InputEndedCallback = function() end;
 			Blacklist = {}
 		});
 
@@ -3967,14 +3998,14 @@ function Compkiller:_LoadElement(Parent: Frame , EnabledLine: boolean , Signal ,
 					Selected = Key.KeyCode;
 				else
 					if Key.UserInputType == Enum.UserInputType.MouseButton1 and not IsBlacklist(Enum.UserInputType.MouseButton1) and not IsBlacklist("MouseLeft") then
-						Selected = "MouseLeft";
+						Selected = Key.UserInputType;
 					elseif Key.UserInputType == Enum.UserInputType.MouseButton2 and not IsBlacklist(Enum.UserInputType.MouseButton2) and not IsBlacklist("MouseRight") then
-						Selected = "MouseRight";
+						Selected = Key.UserInputType;
 					end;
 				end;
 			end;
 
-			local KeyName = typeof(Selected) == "string" and Selected or Selected.Name;
+			local KeyName = Selected.Name;
 
 			Config.Default = KeyName;
 
@@ -3982,7 +4013,7 @@ function Compkiller:_LoadElement(Parent: Frame , EnabledLine: boolean , Signal ,
 
 			IsBinding = false;
 
-			Config.Callback(KeyName);
+			Config.OnChangedCallback(KeyName);
 		end);
 
 		local Args = {};
@@ -4002,7 +4033,7 @@ function Compkiller:_LoadElement(Parent: Frame , EnabledLine: boolean , Signal ,
 
 			Keybind.SetValue(Config.Default);
 
-			Config.Callback(Config.Default);
+			Config.OnChangedCallback(Config.Default);
 		end;
 
 		Args.Signal = Signal:Connect(function(bool)
@@ -4012,12 +4043,35 @@ function Compkiller:_LoadElement(Parent: Frame , EnabledLine: boolean , Signal ,
 		Args.Link = Compkiller:_LoadOption(Block);
 
 		function Args:GetValue()
-			return (typeof(Config.Default) == "string" and Config.Default) or Config.Default.Name;
+			return Config.Default;
 		end;
 
 		if Config.Flag then
 			Compkiller.Flags[Config.Flag] = Args;
 		end;
+		
+		if InputBeganCallback then
+			UserInputService.InputBegan:Connect(function(Input, GameProccessed)
+				if GameProccessed then
+					return
+				end
+
+				if Input.KeyCode.Name == Args:GetValue() or Input.UserInputType.Name == Args:GetValue() then
+					Config.InputBeganCallback((Input.KeyCode and Input.KeyCode.Name ~= "Unknown" and Input.KeyCode.Name) or (Input.UserInputType and Input.UserInputType.Name));
+				end;
+			end);
+		end
+		if InputEndedCallback then
+			UserInputService.InputEnded:Connect(function(Input, GameProccessed)
+				if GameProccessed then
+					return
+				end
+
+				if Input.KeyCode.Name == Args:GetValue() or Input.UserInputType.Name == Args:GetValue() then
+					Config.InputEndedCallback((Input.KeyCode and Input.KeyCode.Name ~= "Unknown" and Input.KeyCode.Name) or (Input.UserInputType and Input.UserInputType.Name));
+				end;
+			end);
+		end
 
 		return Args;
 	end;
@@ -6669,34 +6723,6 @@ function Compkiller.new(Config : Window)
 			end;
 		end)
 
-		--[[local Parent: ScrollingFrame = UilistLayout.Parent;
-
-		Parent = Parent or Scrolling;
-
-		local Detection = function()
-			local Target = (UilistLayout.AbsoluteContentSize.Y);
-
-			for i,v in next , Parent:GetChildren() do task.wait(0.1)
-				local UIList = v:FindFirstChildWhichIsA('UIListLayout');
-				if v:IsA('Frame') and UIList then
-					if (UIList.AbsoluteContentSize.Y >= Target) or (v.AbsoluteSize.Y >= Target) or (UilistLayout.AbsoluteContentSize.Y > Parent.AbsoluteSize.Y) then
-						UilistLayout.VerticalFlex = Enum.UIFlexAlignment.None;
-						Parent.ScrollingEnabled = true;
-					else
-						Parent.ScrollingEnabled = false;
-						UilistLayout.VerticalFlex = Enum.UIFlexAlignment.None;
-					end;
-				end
-			end;
-		end;
-
-		local Executable = function()
-			while true do task.wait(0.15);
-				pcall(Detection);
-			end;
-		end;
-
-		table.insert(WindowArgs.THREADS,task.spawn(Executable))]]
 	end;
 
 	function WindowArgs:DrawConfig(Configuration : TabConfigManager , Internal)
