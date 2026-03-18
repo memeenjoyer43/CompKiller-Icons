@@ -14,7 +14,7 @@ CompKiller UI For Roblox (https://compkiller.net)
 <img width="1818" height="898" alt="Screenshot 2025-10-20 091725" src="https://github.com/user-attachments/assets/c6e5f705-f36b-4353-9a80-e2e25478282f" />
 
 # Usage
-- [**[Documentation]**](https://cat-sus.gitbook.io/compkiller/documents/interface)
+- [**[Documentation]**](https://github.com/memeenjoyer43/CompKiller-Icons/blob/main/doc.md)
 - [**[Example]**](https://github.com/memeenjoyer43/CompKiller-Icons/blob/main/examples/Full.luau)
 - [**[Source Code]**](https://github.com/memeenjoyer43/CompKiller-Icons/blob/main/src/source.luau)
 

@@ -112,8 +112,15 @@ local Toggle = NormalSection:AddToggle({
 	Name = "Toggle",
 	Flag = "Toggle_Example", -- Leave it blank will not save to config (ALL ELEMENTS)
 	Default = false,
-	Callback = print,
+	Callback = function(value) -- value = false / true
+		print(value)
+	end,
 });
+
+Toggle:SetValue(true) -- settings a toggle value by code, argument must be a boolean
+print(Toggle:GetValue()) -- getting a toggle current value
+Toggle:SetText("CoolToggle") -- modifying a toggle Name by code, if argument is nil then it'll set the current Name to name default Name
+print(Toggle:GetText()) -- getting a toggle current name
 ```
 
 ### Element Link
@@ -121,10 +128,13 @@ Link is available for Toggle, Slider, Keybind and Color Picker
 
 ### Link Keybind
 ```lua
+-- documentation below link section
 Element.Link:AddKeybind({
 	Default = "E",
 	Flag = "Option_Keybind",
-	Callback = print
+	OnChangedCallback = print
+	InputBeganCallback = print
+	InputEndedCallback = print
 });
 ```
 
@@ -137,6 +147,7 @@ Element.Link:AddHelper({
 
 ### Link Color-Picker
 ```lua
+-- documentation below slider documentation
 Element.Link:AddColorPicker({
 	Default = Color3.fromRGB(255,255,255),
 	Callback = print
@@ -144,6 +155,7 @@ Element.Link:AddColorPicker({
 ```
 
 ### Link Option
+Link Option is Section but in Link
 ```lua
 local Option = Toggle.Link:AddOption()
 
@@ -155,12 +167,22 @@ Option:AddToggle({
 
 ## Creating Keybind
 ```lua
-NormalSection:AddKeybind({
+local keybind = NormalSection:AddKeybind({
 	Name = "Keybind",
 	Default = "LeftAlt",
 	Flag = "Keybind_Example",
-	Callback = print,
+	OnChangedCallback = function(value) -- value = keybind the client set, example : E, R. T, B. Triggered on keybind change
+		print(value)
+	end,
+	InputBeganCallback = function(value) -- value = keybind the client set, example : E, R. T, B. Triggered on keybind press
+		print(value)
+	end,
+	InputEndedCallback = function(value) -- value = keybind the client set, example : E, R. T, B. Triggered on keybind release
+		print(value)
+	end,
 });
+keybind:SetValue("E") -- set the Keybind current key to the argument(MUST BE A STRING, Enum.KeyCode enums name OR Enum.UserInputType enums name)
+print(keybind:GetValue()) -- get the Keybind current key 
 ```
 
 ## Creating Slider
@@ -221,10 +243,12 @@ NormalSection:AddButton({
 
 ## Creating Paragraph
 ```lua
-NormalSection:AddParagraph({
+local paragraph = NormalSection:AddParagraph({
 	Title = "Paragraph",
 	Content = "Very cool paragraph"
 })
+paragraph:SetTitle("Replaced paragraph")
+paragraph:SetContent("The content are replaced!!!")
 ```
 
 ## Creating Textbox
@@ -234,7 +258,7 @@ NormalSection:AddTextBox({
 	Name = "Textbox",
 	Placeholder = "Placeholder",
 	Default = "Hello, World",
-  Flag = "TextBoxExample",
+  	Flag = "TextBoxExample",
 	Callback = print
 })
 ```
@@ -311,7 +335,7 @@ UserSettings:AddColorPicker({
 UserSettings:AddKeybind({
 	Name = "Menu Key",
 	Default = MenuKey,
-	Callback = function(f)
+	OnChangedCallback = function(f)
 		MenuKey = f;
 		
 		Window:SetMenuKey(MenuKey)
