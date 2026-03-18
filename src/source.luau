@@ -188,8 +188,10 @@ export type Button = {
 
 export type Keybind = {
 	Name: string,
-	Default: string | Enum.KeyCode,
-	Callback: (Value: string) -> any,
+	Default: string,
+	OnChangedCallback: (Value: string) -> any?,
+	InputBeganCallback: (Value: string) -> any?,
+	InputEndedCallback: (Value: string) -> any?,
 	Blacklist: {string | Enum.KeyCode}
 };
 
