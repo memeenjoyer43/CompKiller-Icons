@@ -17,6 +17,9 @@ local ConfigManager = Compkiller:ConfigManager({
 	Config = "Example-Configs"
 });
 
+-- Optimize Mode (Disabled by default) --
+Compkiller:OptimizeMode(false);
+
 -- Loading UI (Icon <string> , Duration <number>) --
 Compkiller:Loader("rbxassetid://120245531583106" , 1.5).yield();
 
@@ -48,7 +51,7 @@ UserSettings:AddColorPicker({
 UserSettings:AddKeybind({
 	Name = "Menu Key",
 	Default = MenuKey,
-	Callback = function(f)
+	OnChangedCallback = function(f)
 		MenuKey = f;
 		
 		Window:SetMenuKey(MenuKey)
@@ -93,7 +96,7 @@ UserSettings:AddDropdown({
 
 Notifier.new({
 	Title = "Notification",
-	Content = "Thank you for use this script!",
+	Content = "Thank you for using this script!",
 	Duration = 10,
 	Icon = "rbxassetid://120245531583106"
 });
@@ -146,12 +149,12 @@ local Toggle = NormalSection:AddToggle({
 });
 
 -- Add Keybind To Toggle --
-local Keybind = Toggle.Link:AddKeybind({
+Toggle.Link:AddKeybind({
 	Default = "E",
 	Flag = "Option_Keybind",
-	Callback = function(val)
-		print(val)
-	end
+	OnChangedCallback = print,
+	InputBeganCallback = print,
+	InputEndedCallback = print
 });
 
 -- Helper --
@@ -198,9 +201,13 @@ NormalSection:AddKeybind({
 	Name = "Keybind",
 	Default = "LeftAlt",
 	Flag = "Keybind_Example",
-	Callback = function(val)
-		print(val)
-	end,
+	OnChangedCallback = print,
+	InputBeganCallback = function(val)
+		print("Input Began : " .. val)
+	end,	
+	InputEndedCallback = function(val)
+		print("Input Ended : " .. val)
+	end,	
 });
 
 NormalSection:AddSlider({
@@ -272,7 +279,7 @@ local DrawElements = function(Tab,Position)
 		-- Add Keybind To Toggle --
 		local Keybind = Toggle.Link:AddKeybind({
 			Default = "E",
-			Callback = print
+			OnChangedCallback = print
 		});
 
 		-- Add Option To Toggle --
@@ -292,7 +299,9 @@ local DrawElements = function(Tab,Position)
 		NormalSectionRight:AddKeybind({
 			Name = "Keybind",
 			Default = "LeftAlt",
-			Callback = print,
+			OnChangedCallback = print,
+			InputBeganCallback = print,
+			InputEndedCallback = print
 		});
 
 		NormalSectionRight:AddSlider({
