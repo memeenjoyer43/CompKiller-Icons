@@ -3165,7 +3165,7 @@ function Compkiller:_LoadOption(Value , TabSignal)
 			Compkiller.Flags[Config.Flag] = Args;
 		end;
 
-		if InputBeganCallback then
+		if Config.InputBeganCallback then
 			UserInputService.InputBegan:Connect(function(Input, GameProccessed)
 				if GameProccessed then
 					return
@@ -3176,7 +3176,7 @@ function Compkiller:_LoadOption(Value , TabSignal)
 				end;
 			end);
 		end
-		if InputEndedCallback then
+		if Config.InputEndedCallback then
 			UserInputService.InputEnded:Connect(function(Input, GameProccessed)
 				if GameProccessed then
 					return
@@ -4049,8 +4049,8 @@ function Compkiller:_LoadElement(Parent: Frame , EnabledLine: boolean , Signal ,
 		if Config.Flag then
 			Compkiller.Flags[Config.Flag] = Args;
 		end;
-		
-		if InputBeganCallback then
+
+		if Config.InputBeganCallback then
 			UserInputService.InputBegan:Connect(function(Input, GameProccessed)
 				if GameProccessed then
 					return
@@ -4061,7 +4061,7 @@ function Compkiller:_LoadElement(Parent: Frame , EnabledLine: boolean , Signal ,
 				end;
 			end);
 		end
-		if InputEndedCallback then
+		if Config.InputEndedCallback then
 			UserInputService.InputEnded:Connect(function(Input, GameProccessed)
 				if GameProccessed then
 					return
