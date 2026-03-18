@@ -2,6 +2,7 @@
 		Example Compkiller UI
 	
 	Author: 4lpaca
+	Forked by memeenjoyer43
 	
 	Press Left Alt to open / close
 ]]
