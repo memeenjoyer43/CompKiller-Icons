@@ -4218,6 +4218,7 @@ function Compkiller:_LoadElement(Parent: Frame , EnabledLine: boolean , Signal ,
 		UICorner.Parent = Frame
 
 		TextLabel.Parent = Frame
+		TextLabel.RichText = true
 		TextLabel.AnchorPoint = Vector2.new(0.5, 0.5)
 		TextLabel.BackgroundTransparency = 1.000
 		TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -4226,7 +4227,7 @@ function Compkiller:_LoadElement(Parent: Frame , EnabledLine: boolean , Signal ,
 		TextLabel.Size = UDim2.new(1, 0, 1, 0)
 		TextLabel.ZIndex = Zindex + 8
 		TextLabel.Font = Enum.Font.GothamMedium
-		TextLabel.Text = Config.Name;
+		TextLabel.Text = "<b>" .. Config.Name  .."</b>";
 		TextLabel.TextColor3 = Compkiller.Colors.SwitchColor
 		TextLabel.TextSize = 12.000
 		TextLabel.TextStrokeTransparency = 0.900
