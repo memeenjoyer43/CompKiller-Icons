@@ -251,7 +251,7 @@ paragraph:SetTitle("Replaced paragraph")
 paragraph:SetContent("The content are replaced!!!")
 ```
 
-## Creating Textbox
+## Creating Textbox/Input
 ```lua
 
 NormalSection:AddTextBox({
