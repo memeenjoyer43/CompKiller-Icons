@@ -4686,6 +4686,7 @@ function Compkiller:_LoadElement(Parent: Frame , EnabledLine: boolean , Signal ,
 		BlockText.ZIndex = Zindex + 3
 		BlockText.Font = Enum.Font.GothamMedium
 		BlockText.AutomaticSize = Enum.AutomaticSize.Y
+		BlockText.TextWrapped = true
 		BlockText.Text = Config.Title
 		BlockText.TextColor3 = Compkiller.Colors.SwitchColor
 		BlockText.TextSize = 14.000
@@ -4705,7 +4706,6 @@ function Compkiller:_LoadElement(Parent: Frame , EnabledLine: boolean , Signal ,
 		BlockLine.BackgroundTransparency = 0.500
 		BlockLine.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		BlockLine.BorderSizePixel = 0
-		BlockLine.AutomaticSize = Enum.AutomaticSize.Y
 		BlockLine.Position = UDim2.new(0.5, 0, 1, 0)
 		BlockLine.Size = UDim2.new(1, -26, 0, 1)
 		BlockLine.ZIndex = Zindex + 4
@@ -4727,6 +4727,7 @@ function Compkiller:_LoadElement(Parent: Frame , EnabledLine: boolean , Signal ,
 		DescriptionText.Font = Enum.Font.GothamMedium
 		DescriptionText.Text = Config.Content
 		DescriptionText.AutomaticSize = Enum.AutomaticSize.Y
+		DescriptionText.TextWrapped = true
 		DescriptionText.TextColor3 = Compkiller.Colors.SwitchColor
 		DescriptionText.TextSize = 13.000
 		DescriptionText.TextTransparency = 0.500
