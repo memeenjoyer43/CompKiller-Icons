@@ -4671,7 +4671,7 @@ function Compkiller:_LoadElement(Parent: Frame , EnabledLine: boolean , Signal ,
 		Paragraph.BackgroundTransparency = 1.000
 		Paragraph.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Paragraph.BorderSizePixel = 0
-		Paragraph.Size = UDim2.new(1, -1, 0, 40)
+		Paragraph.Size = UDim2.new(1, -1, 0, 20)
 		Paragraph.ZIndex = Zindex + 2
 		Paragraph.ClipsDescendants = true
 
