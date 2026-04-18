@@ -4667,7 +4667,7 @@ function Compkiller:_LoadElement(Parent: Frame , EnabledLine: boolean , Signal ,
 
 		Paragraph.Name = Compkiller:_RandomString()
 		Paragraph.Parent = Parent
-		--Paragraph.AutomaticSize = Enum.AutomaticSize.Y
+		Paragraph.AutomaticSize = Enum.AutomaticSize.Y
 		Paragraph.BackgroundTransparency = 1.000
 		Paragraph.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Paragraph.BorderSizePixel = 0
