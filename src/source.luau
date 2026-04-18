@@ -4667,7 +4667,6 @@ function Compkiller:_LoadElement(Parent: Frame , EnabledLine: boolean , Signal ,
 
 		Paragraph.Name = Compkiller:_RandomString()
 		Paragraph.Parent = Parent
-		Paragraph.AutomaticSize = Enum.AutomaticSize.Y
 		Paragraph.BackgroundTransparency = 1.000
 		Paragraph.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Paragraph.BorderSizePixel = 0
@@ -4685,9 +4684,7 @@ function Compkiller:_LoadElement(Parent: Frame , EnabledLine: boolean , Signal ,
 		BlockText.Size = UDim2.new(1, -20, 0, 25)
 		BlockText.ZIndex = Zindex + 3
 		BlockText.Font = Enum.Font.GothamMedium
-		BlockText.TextWrapped = true
 		BlockText.Text = Config.Title
-		BlockText.AutomaticSize = Enum.AutomaticSize.Y
 		BlockText.TextColor3 = Compkiller.Colors.SwitchColor
 		BlockText.TextSize = 14.000
 		BlockText.TextTransparency = 0.300
@@ -4709,7 +4706,6 @@ function Compkiller:_LoadElement(Parent: Frame , EnabledLine: boolean , Signal ,
 		BlockLine.Position = UDim2.new(0.5, 0, 1, 0)
 		BlockLine.Size = UDim2.new(1, -26, 0, 1)
 		BlockLine.ZIndex = Zindex + 4
-		BlockLine.AutomaticSize = Enum.AutomaticSize.Y
 
 		table.insert(Compkiller.Elements.LineColor,{
 			Element = BlockLine,
@@ -4722,17 +4718,16 @@ function Compkiller:_LoadElement(Parent: Frame , EnabledLine: boolean , Signal ,
 		DescriptionText.BackgroundTransparency = 1.000
 		DescriptionText.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		DescriptionText.BorderSizePixel = 0
-		DescriptionText.Position = UDim2.new(0, 12, 0, 10)
+		DescriptionText.Position = UDim2.new(0, 12, 0, 22)
 		DescriptionText.Size = UDim2.new(1, -20, 1, -25)
 		DescriptionText.ZIndex = Zindex + 5
 		DescriptionText.Font = Enum.Font.GothamMedium
 		DescriptionText.Text = Config.Content
-		DescriptionText.TextWrapped = true
 		DescriptionText.TextColor3 = Compkiller.Colors.SwitchColor
 		DescriptionText.TextSize = 13.000
 		DescriptionText.TextTransparency = 0.500
 		DescriptionText.TextXAlignment = Enum.TextXAlignment.Left
-		DescriptionText.TextYAlignment = Enum.TextYAlignment.Bottom
+		DescriptionText.TextYAlignment = Enum.TextYAlignment.Top
 
 		table.insert(Compkiller.Elements.SwitchColor , {
 			Element = DescriptionText,
