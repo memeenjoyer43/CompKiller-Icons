@@ -4705,7 +4705,7 @@ function Compkiller:_LoadElement(Parent: Frame , EnabledLine: boolean , Signal ,
 		DescriptionText.BackgroundTransparency = 1.000
 		DescriptionText.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		DescriptionText.BorderSizePixel = 0
-		DescriptionText.Position = UDim2.new(0, 12, 0, BlockText.AbsoluteSize.Y)
+		DescriptionText.Position = UDim2.new(0, 12, 0.05, BlockText.AbsoluteSize.Y * 2)
 		DescriptionText.Size = UDim2.new(1, -20, 1, -25)
 		DescriptionText.ZIndex = Zindex + 5
 		DescriptionText.Font = Enum.Font.GothamMedium
