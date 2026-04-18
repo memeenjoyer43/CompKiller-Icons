@@ -4733,7 +4733,7 @@ function Compkiller:_LoadElement(Parent: Frame , EnabledLine: boolean , Signal ,
 		DescriptionText.TextSize = 13.000
 		DescriptionText.TextTransparency = 0.500
 		DescriptionText.TextXAlignment = Enum.TextXAlignment.Left
-		DescriptionText.TextYAlignment = Enum.TextYAlignment.Top
+		DescriptionText.TextYAlignment = Enum.TextYAlignment.Bottom
 
 		table.insert(Compkiller.Elements.SwitchColor , {
 			Element = DescriptionText,
