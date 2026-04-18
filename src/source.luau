@@ -4671,6 +4671,7 @@ function Compkiller:_LoadElement(Parent: Frame , EnabledLine: boolean , Signal ,
 		Paragraph.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Paragraph.BorderSizePixel = 0
 		Paragraph.Size = UDim2.new(1, -1, 0, 40)
+		Paragraph.AutomaticSize = Enum.AutomaticSize.Y
 		Paragraph.ZIndex = Zindex + 2
 		Paragraph.ClipsDescendants = true
 
@@ -4690,6 +4691,7 @@ function Compkiller:_LoadElement(Parent: Frame , EnabledLine: boolean , Signal ,
 		BlockText.TextSize = 14.000
 		BlockText.TextTransparency = 0.300
 		BlockText.TextXAlignment = Enum.TextXAlignment.Left
+		BlockText.AutomaticSize = Enum.AutomaticSize.Y
 		BlockText.RichText = true
 
 		table.insert(Compkiller.Elements.SwitchColor , {
@@ -4730,11 +4732,16 @@ function Compkiller:_LoadElement(Parent: Frame , EnabledLine: boolean , Signal ,
 		DescriptionText.TextTransparency = 0.500
 		DescriptionText.TextXAlignment = Enum.TextXAlignment.Left
 		DescriptionText.TextYAlignment = Enum.TextYAlignment.Top
+		DescriptionText.AutomaticSize = Enum.AutomaticSize.Y
 
 		table.insert(Compkiller.Elements.SwitchColor , {
 			Element = DescriptionText,
 			Property = 'TextColor3'
 		});
+
+		-- something here
+		DescriptionText.Position += UDim2.new(0, 0, 0, BlockText.AbsoluteSize.Y)
+		BlockLine.Position += UDim2.new(0, 0, 0, DescriptionText.AbsoluteSize.Y + 1) 
 
 		local Base = 15;
 
