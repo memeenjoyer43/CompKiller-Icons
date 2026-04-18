@@ -4804,57 +4804,106 @@ function Compkiller:_LoadElement(Parent: Frame , EnabledLine: boolean , Signal ,
 		return Args;
 	end;
 
-	function Args:AddParagraph(Config: Paragraph) -- request by Neptune
-		Config = Compkiller.__CONFIG(Config, {
-			Title = "Paragraph",
-			Content = "",
+	function Args:AddTextBox(Config: TextBoxConfig)
+		Config = Compkiller.__CONFIG(Config , {
+			Name = "TextBox",
+			Default = "",
+			Placeholder = "Placeholder",
+			Numberic = false,
+			Callback = function() end,
 		});
 
-		local Paragraph = Instance.new("Frame")
+		local TextBox = Instance.new("Frame")
 		local BlockText = Instance.new("TextLabel")
+		local LinkValues = Instance.new("Frame")
+		local UIStroke = Instance.new("UIStroke")
+		local UICorner = Instance.new("UICorner")
+		local TextBox_2 = Instance.new("TextBox")
 		local BlockLine = Instance.new("Frame")
-		local DescriptionText = Instance.new("TextLabel")
 
 		if Compkiller:_IsMobile() then
-			Compkiller:_AddDragBlacklist(Paragraph);
+			Compkiller:_AddDragBlacklist(TextBox);
 		end;
 
-		Paragraph.Name = Compkiller:_RandomString()
-		Paragraph.Parent = Parent
-		Paragraph.AutomaticSize = Enum.AutomaticSize.Y
-		Paragraph.BackgroundTransparency = 1.000
-		Paragraph.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Paragraph.BorderSizePixel = 0
-		Paragraph.Size = UDim2.new(1, -1, 0, 40)
-		Paragraph.ZIndex = Zindex + 2
-		Paragraph.ClipsDescendants = true
+		TextBox.Name = Compkiller:_RandomString()
+		TextBox.Parent = Parent
+		TextBox.BackgroundTransparency = 1.000
+		TextBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		TextBox.BorderSizePixel = 0
+		TextBox.Size = UDim2.new(1, -1, 0, 30)
+		TextBox.ZIndex = Zindex + 1
 
 		BlockText.Name = Compkiller:_RandomString()
-		BlockText.Parent = Paragraph
+		BlockText.Parent = TextBox
 		BlockText.AnchorPoint = Vector2.new(0, 0.5)
 		BlockText.BackgroundTransparency = 1.000
 		BlockText.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		BlockText.BorderSizePixel = 0
-		BlockText.Position = UDim2.new(0, 12, 0, 12)
+		BlockText.Position = UDim2.new(0, 12, 0.5, 0)
 		BlockText.Size = UDim2.new(1, -20, 0, 25)
-		BlockText.ZIndex = Zindex + 3
+		BlockText.ZIndex = Zindex + 2
 		BlockText.Font = Enum.Font.GothamMedium
-		BlockText.TextWrapped = true
-		BlockText.Text = Config.Title
-		BlockText.AutomaticSize = Enum.AutomaticSize.Y
+		BlockText.Text = Config.Name
 		BlockText.TextColor3 = Compkiller.Colors.SwitchColor
 		BlockText.TextSize = 14.000
 		BlockText.TextTransparency = 0.300
 		BlockText.TextXAlignment = Enum.TextXAlignment.Left
-		BlockText.RichText = true
 
-		table.insert(Compkiller.Elements.SwitchColor , {
+		table.insert(Compkiller.Elements.SwitchColor,{
 			Element = BlockText,
-			Property = 'TextColor3'
-		});
+			Property = "TextColor3"
+		})
+
+		LinkValues.Name = Compkiller:_RandomString()
+		LinkValues.Parent = TextBox
+		LinkValues.AnchorPoint = Vector2.new(1, 0.540000021)
+		LinkValues.BackgroundColor3 = Compkiller.Colors.DropColor
+		LinkValues.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		LinkValues.BorderSizePixel = 0
+		LinkValues.Position = UDim2.new(1, -12, 0.5, 0)
+		LinkValues.Size = UDim2.new(0, 95, 0, 16)
+		LinkValues.ZIndex = Zindex + 3
+
+		table.insert(Compkiller.Elements.DropColor,{
+			Element = LinkValues,
+			Property = "BackgroundColor3"
+		})
+
+		UIStroke.Color = Compkiller.Colors.StrokeColor
+		UIStroke.Parent = LinkValues
+
+		table.insert(Compkiller.Elements.StrokeColor,{
+			Element = UIStroke,
+			Property = "Color"
+		})
+
+		UICorner.CornerRadius = UDim.new(0, 3)
+		UICorner.Parent = LinkValues
+
+		TextBox_2.Parent = LinkValues
+		TextBox_2.AnchorPoint = Vector2.new(0.5, 0.5)
+		TextBox_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		TextBox_2.BackgroundTransparency = 1.000
+		TextBox_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		TextBox_2.BorderSizePixel = 0
+		TextBox_2.ClipsDescendants = true
+		TextBox_2.Position = UDim2.new(0.5, 0, 0.5, 0)
+		TextBox_2.Size = UDim2.new(1, -5, 1, 0)
+		TextBox_2.ZIndex = Zindex + 5
+		TextBox_2.ClearTextOnFocus = false
+		TextBox_2.Font = Enum.Font.GothamMedium
+		TextBox_2.PlaceholderText = Config.Placeholder
+		TextBox_2.Text = Config.Default
+		TextBox_2.TextColor3 = Compkiller.Colors.SwitchColor
+		TextBox_2.TextSize = 11.000
+
+		table.insert(Compkiller.Elements.SwitchColor,{
+			Element = TextBox_2,
+			Property = "TextColor3"
+		})
 
 		BlockLine.Name = Compkiller:_RandomString()
-		BlockLine.Parent = Paragraph
+		BlockLine.Parent = TextBox
 		BlockLine.AnchorPoint = Vector2.new(0.5, 1)
 		BlockLine.BackgroundColor3 = Compkiller.Colors.LineColor
 		BlockLine.BackgroundTransparency = 0.500
@@ -4862,98 +4911,136 @@ function Compkiller:_LoadElement(Parent: Frame , EnabledLine: boolean , Signal ,
 		BlockLine.BorderSizePixel = 0
 		BlockLine.Position = UDim2.new(0.5, 0, 1, 0)
 		BlockLine.Size = UDim2.new(1, -26, 0, 1)
-		BlockLine.ZIndex = Zindex + 4
-		BlockLine.AutomaticSize = Enum.AutomaticSize.Y
+		BlockLine.ZIndex = Zindex + 3;
 
 		table.insert(Compkiller.Elements.LineColor,{
 			Element = BlockLine,
 			Property = "BackgroundColor3"
-		});
+		})
 
-		DescriptionText.RichText = true
-		DescriptionText.Name = Compkiller:_RandomString()
-		DescriptionText.Parent = Paragraph
-		DescriptionText.BackgroundTransparency = 1.000
-		DescriptionText.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		DescriptionText.BorderSizePixel = 0
-		DescriptionText.Position = UDim2.new(0, 12, 0, 10)
-		DescriptionText.Size = UDim2.new(1, -20, 1, -25)
-		DescriptionText.ZIndex = Zindex + 5
-		DescriptionText.Font = Enum.Font.GothamMedium
-		DescriptionText.Text = Config.Content
-		DescriptionText.TextWrapped = true
-		DescriptionText.TextColor3 = Compkiller.Colors.SwitchColor
-		DescriptionText.TextSize = 13.000
-		DescriptionText.TextTransparency = 0.500
-		DescriptionText.TextXAlignment = Enum.TextXAlignment.Left
-		DescriptionText.TextYAlignment = Enum.TextYAlignment.Bottom
+		local Update = function()
+			local scale = TextService:GetTextSize(TextBox_2.Text,TextBox_2.TextSize,TextBox_2.Font,Vector2.new(math.huge,math.huge));
+			local Base = TextService:GetTextSize(TextBox_2.PlaceholderText,TextBox_2.TextSize,TextBox_2.Font,Vector2.new(math.huge,math.huge));
 
-		table.insert(Compkiller.Elements.SwitchColor , {
-			Element = DescriptionText,
-			Property = 'TextColor3'
-		});
+			local MainScale = ((scale.X > Base.X) and scale.X) or Base.X;
 
-		local Base = 15;
+			local xp = pcall(function()
+				Compkiller:_Animation(LinkValues,TweenInfo.new(0.25),{
+					Size = UDim2.fromOffset(math.clamp(MainScale + 7 , Base.X , TextBox.AbsoluteSize.X / 2) , 16)
+				})
+			end);
 
-		local UpdateScale = function()
-
-			if not DescriptionText.Text:byte() then
-				local TitleScale = TextService:GetTextSize(BlockText.Text,BlockText.TextSize,BlockText.Font,Vector2.new(math.huge,math.huge));
-
-				Compkiller:_Animation(Paragraph,TweenInfo.new(0.15),{
-					Size = UDim2.new(1, -1, 0, TitleScale.Y + Base)
-				});
-			else
-				local TitleScale = TextService:GetTextSize(BlockText.Text,BlockText.TextSize,BlockText.Font,Vector2.new(math.huge,math.huge));
-				local ContentScale = TextService:GetTextSize(DescriptionText.Text,DescriptionText.TextSize,DescriptionText.Font,Vector2.new(math.huge,math.huge));
-
-				Compkiller:_Animation(Paragraph,TweenInfo.new(0.15),{
-					Size = UDim2.new(1, -1, 0, (TitleScale.Y + ContentScale.Y) + Base)
-				});
+			if not xp then
+				Compkiller:_Animation(LinkValues,TweenInfo.new(0.25),{
+					Size = UDim2.fromOffset(MainScale + 7 , 16)
+				})
 			end;
 		end;
 
-		UpdateScale();
+		local parse = function(text)
+			if not text then
+				return "";	
+			end;
+
+			if Config.Numeric then
+				local out = string.gsub(tostring(text), '[^0-9.]', '')
+
+				if tonumber(out) then
+					return tonumber(out);
+				end;
+
+				return nil;
+			end;
+
+			return text;
+		end;
+
+		Update();
+
+		TextBox_2:GetPropertyChangedSignal('Text'):Connect(Update);
+
+		TextBox_2:GetPropertyChangedSignal('Text'):Connect(function()
+			local value = parse(TextBox_2.Text);
+
+			if value then
+
+				TextBox_2.Text = tostring(value);
+
+				task.spawn(Config.Callback,value);
+
+				Config.Default = value;
+			else
+				TextBox_2.Text = string.gsub(TextBox_2.Text, '[^0-9.]', '');
+
+				Config.Default = TextBox_2.Text;
+			end;
+		end);
 
 		local Args = {};
 
-		function Args:SetTitle(title)
-			BlockText.Text = title;
-			UpdateScale();
+		Args.Flag = Config.Flag;
+
+		function Args:SetText(str : string)
+			BlockText.Text = str or Config.Name
 		end;
 
-		function Args:SetContent(content)
-			DescriptionText.Text = content;
-			UpdateScale();
+		function Args:GetText()
+			return BlockText.Text;
+		end;
+
+		function Args:SetValue(Value)
+			Config.Default = Value;
+
+			TextBox_2.Text = tostring(Config.Default);
+
+			Config.Callback(Value);
 		end;
 
 		Args.Signal = Signal:Connect(function(bool)
 			if bool then
 				Compkiller:_Animation(BlockText,TweenInfo.new(0.2),{
-					TextTransparency = 0.300
-				});
-
-				Compkiller:_Animation(DescriptionText,TweenInfo.new(0.2),{
-					TextTransparency = 0.500
+					TextTransparency = 0.3
 				});
 
 				Compkiller:_Animation(BlockLine,TweenInfo.new(0.2),{
-					BackgroundTransparency = 0.500
-				});
-			else
-				Compkiller:_Animation(BlockText,TweenInfo.new(0.2),{
-					TextTransparency = 1
+					BackgroundTransparency = 0.5
 				});
 
-				Compkiller:_Animation(DescriptionText,TweenInfo.new(0.2),{
+				Compkiller:_Animation(UIStroke,TweenInfo.new(0.2),{
+					Transparency = 0
+				});
+
+				Compkiller:_Animation(LinkValues,TweenInfo.new(0.2),{
+					BackgroundTransparency = 0
+				});
+
+			else
+				Compkiller:_Animation(BlockText,TweenInfo.new(0.2),{
 					TextTransparency = 1
 				});
 
 				Compkiller:_Animation(BlockLine,TweenInfo.new(0.2),{
 					BackgroundTransparency = 1
 				});
+
+				Compkiller:_Animation(UIStroke,TweenInfo.new(0.2),{
+					Transparency = 1
+				});
+
+				Compkiller:_Animation(LinkValues,TweenInfo.new(0.2),{
+					BackgroundTransparency = 1
+				});
+
 			end;
 		end);
+
+		function Args:GetValue()
+			return Config.Default;
+		end;
+
+		if Config.Flag then
+			Compkiller.Flags[Config.Flag] = Args;
+		end;
 
 		return Args;
 	end;
