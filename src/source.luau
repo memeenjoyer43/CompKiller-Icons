@@ -4667,11 +4667,11 @@ function Compkiller:_LoadElement(Parent: Frame , EnabledLine: boolean , Signal ,
 
 		Paragraph.Name = Compkiller:_RandomString()
 		Paragraph.Parent = Parent
-		Paragraph.AutomaticSize = Enum.AutomaticSize.Y
+		--Paragraph.AutomaticSize = Enum.AutomaticSize.Y
 		Paragraph.BackgroundTransparency = 1.000
 		Paragraph.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Paragraph.BorderSizePixel = 0
-		Paragraph.Size = UDim2.new(1, -1, 0, 20)
+		Paragraph.Size = UDim2.new(1, -1, 0, 40)
 		Paragraph.ZIndex = Zindex + 2
 		Paragraph.ClipsDescendants = true
 
@@ -4685,7 +4685,6 @@ function Compkiller:_LoadElement(Parent: Frame , EnabledLine: boolean , Signal ,
 		BlockText.Size = UDim2.new(1, -20, 0, 25)
 		BlockText.ZIndex = Zindex + 3
 		BlockText.Font = Enum.Font.GothamMedium
-		BlockText.AutomaticSize = Enum.AutomaticSize.Y
 		BlockText.TextWrapped = true
 		BlockText.Text = Config.Title
 		BlockText.TextColor3 = Compkiller.Colors.SwitchColor
@@ -4726,7 +4725,7 @@ function Compkiller:_LoadElement(Parent: Frame , EnabledLine: boolean , Signal ,
 		DescriptionText.ZIndex = Zindex + 5
 		DescriptionText.Font = Enum.Font.GothamMedium
 		DescriptionText.Text = Config.Content
-		DescriptionText.AutomaticSize = Enum.AutomaticSize.Y
+		--DescriptionText.AutomaticSize = Enum.AutomaticSize.Y
 		DescriptionText.TextWrapped = true
 		DescriptionText.TextColor3 = Compkiller.Colors.SwitchColor
 		DescriptionText.TextSize = 13.000
