@@ -4699,29 +4699,13 @@ function Compkiller:_LoadElement(Parent: Frame , EnabledLine: boolean , Signal ,
 			Property = 'TextColor3'
 		});
 
-		BlockLine.Name = Compkiller:_RandomString()
-		BlockLine.Parent = Paragraph
-		BlockLine.AnchorPoint = Vector2.new(0.5, 1)
-		BlockLine.BackgroundColor3 = Compkiller.Colors.LineColor
-		BlockLine.BackgroundTransparency = 0.500
-		BlockLine.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		BlockLine.BorderSizePixel = 0
-		BlockLine.Position = UDim2.new(0.5, 0, 1, 0)
-		BlockLine.Size = UDim2.new(1, -26, 0, 1)
-		BlockLine.ZIndex = Zindex + 4
-
-		table.insert(Compkiller.Elements.LineColor,{
-			Element = BlockLine,
-			Property = "BackgroundColor3"
-		});
-
 		DescriptionText.RichText = true
 		DescriptionText.Name = Compkiller:_RandomString()
 		DescriptionText.Parent = Paragraph
 		DescriptionText.BackgroundTransparency = 1.000
 		DescriptionText.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		DescriptionText.BorderSizePixel = 0
-		DescriptionText.Position = UDim2.new(0, 12, 0, 22)
+		DescriptionText.Position = UDim2.new(0, 12, 0, BlockText.AbsoluteSize.Y)
 		DescriptionText.Size = UDim2.new(1, -20, 1, -25)
 		DescriptionText.ZIndex = Zindex + 5
 		DescriptionText.Font = Enum.Font.GothamMedium
@@ -4732,16 +4716,27 @@ function Compkiller:_LoadElement(Parent: Frame , EnabledLine: boolean , Signal ,
 		DescriptionText.TextTransparency = 0.500
 		DescriptionText.TextXAlignment = Enum.TextXAlignment.Left
 		DescriptionText.TextYAlignment = Enum.TextYAlignment.Top
-		DescriptionText.AutomaticSize = Enum.AutomaticSize.Y
 
 		table.insert(Compkiller.Elements.SwitchColor , {
 			Element = DescriptionText,
 			Property = 'TextColor3'
 		});
 
-		-- something here
-		DescriptionText.Position += UDim2.new(0, 0, 0, BlockText.AbsoluteSize.Y)
-		BlockLine.Position += UDim2.new(0, 0, 0, DescriptionText.AbsoluteSize.Y + 1) 
+		BlockLine.Name = Compkiller:_RandomString()
+		BlockLine.Parent = Paragraph
+		BlockLine.AnchorPoint = Vector2.new(0.5, 1)
+		BlockLine.BackgroundColor3 = Compkiller.Colors.LineColor
+		BlockLine.BackgroundTransparency = 0.500
+		BlockLine.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		BlockLine.BorderSizePixel = 0
+		BlockLine.Position = UDim2.new(0.5, 0, 1, DescriptionText.AbsoluteSize.Y / 4)
+		BlockLine.Size = UDim2.new(1, -26, 0, 1)
+		BlockLine.ZIndex = Zindex + 4
+
+		table.insert(Compkiller.Elements.LineColor,{
+			Element = BlockLine,
+			Property = "BackgroundColor3"
+		});
 
 		local Base = 15;
 
