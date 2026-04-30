@@ -346,17 +346,16 @@ if game:GetService('RunService'):IsStudio() then
 end;
 
 --- Local Variables ---
-local cloneref: cloneref = cloneref or function(f) return f end;
-local TweenService: TweenService = cloneref(game:GetService('TweenService'));
-local UserInputService: UserInputService = cloneref(game:GetService('UserInputService'));
-local TextService: TextService = cloneref(game:GetService('TextService'));
-local RunService: RunService = cloneref(game:GetService('RunService'));
-local Players: Players = cloneref(game:GetService('Players'));
-local HttpService: HttpService = cloneref(game:GetService('HttpService'));
+local TweenService: TweenService = game:GetService('TweenService')
+local UserInputService: UserInputService = game:GetService('UserInputService')
+local TextService: TextService = game:GetService('TextService')
+local RunService: RunService = game:GetService('RunService')
+local Players: Players = game:GetService('Players')
+local HttpService: HttpService = game:GetService('HttpService')
 local LocalPlayer: Player = Players.LocalPlayer;
-local CoreGui: PlayerGui = (gethui and gethui()) or (get_hidden_gui and get_hidden_gui()) or cloneref(game:FindFirstChild('CoreGui')) or cloneref(LocalPlayer.PlayerGui);
+local CoreGui: PlayerGui = (gethui and gethui()) or (get_hidden_gui and get_hidden_gui()) or game:FindFirstChild('CoreGui') or cloneref(LocalPlayer.PlayerGui);
 local Mouse: Mouse = LocalPlayer:GetMouse();
-local CurrentCamera: Camera? = cloneref(workspace.CurrentCamera);
+local CurrentCamera: Camera? = workspace.CurrentCamera
 
 local Compkiller = {
 	Version = '2.6',
@@ -695,6 +694,10 @@ function Compkiller:_Animation(Self: Instance , Info: TweenInfo , Property :{[K]
 	local Tween = TweenService:Create(Self , Info or TweenInfo.new(0.25) , Property);
 
 	Tween:Play();
+
+	Tween.Completed:Once(function()
+		Tween:Destroy()
+	end)
 
 	return Tween;
 end;
